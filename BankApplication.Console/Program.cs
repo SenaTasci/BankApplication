@@ -150,7 +150,7 @@ namespace BankApplication
                 Console.Write("Yatırmak istediğiniz miktarı girin: ");
                 if (decimal.TryParse(Console.ReadLine(), out decimal amount) && amount > 0)
                 {
-                    if (accountService.DepositMoney(currentAccount, amount))
+                    if (accountService.DepositMoney(amount))
                     {
                         Console.WriteLine($"Yeni bakiye: {currentAccount.Balance} TL");
                     }
@@ -204,6 +204,8 @@ namespace BankApplication
                 Console.Write("Alıcı hesap numarasını girin: ");
                 string receiverAccountNumber = Console.ReadLine();
 
+
+
                 Console.Write("Transfer etmek istediğiniz miktarı girin: ");
                 if (decimal.TryParse(Console.ReadLine(), out decimal amount) && amount > 0)
                 {
@@ -225,6 +227,7 @@ namespace BankApplication
             {
                 Console.WriteLine("Giriş yapmanız gerekmektedir.");
             }
+
         }
     }
 }
