@@ -10,7 +10,7 @@ using System.Linq;
 public class AccountService
 {
     private List<Account> accounts = new List<Account>();
-    private Account loggedInAccount = null;
+    public Account loggedInAccount = null;
 
     public Account CreateAccount(string name, string surname, string email, string password, string phoneNumber, string identityNumber)
     {
@@ -43,7 +43,7 @@ public class AccountService
         return accounts.SingleOrDefault(a => a.AccountNumber == accountNumber);
     }
 
-    public bool DepositMoney(decimal amount)
+    public bool DepositMoney(decimal amount )
     {
         if (amount > 0)
         {

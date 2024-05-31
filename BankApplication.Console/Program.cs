@@ -121,6 +121,8 @@ namespace BankApplication
             string password = Console.ReadLine();
 
             currentAccount = accountService.Login(email, password);
+            accountService.loggedInAccount = currentAccount;
+
             if (currentAccount != null)
             {
                 Console.WriteLine($"Giriş başarılı! Hoş geldiniz, {currentAccount.Name} {currentAccount.Surname}");
@@ -199,12 +201,32 @@ namespace BankApplication
 
         static void TransferMoney()
         {
+
+            
+
+
             if (currentAccount != null)
             {
                 Console.Write("Alıcı hesap numarasını girin: ");
                 string receiverAccountNumber = Console.ReadLine();
 
+                bool receiverExists = false;
 
+                foreach (var account in accounts)
+                {
+                    if (account.AccountNumber == receiverAccountNumber)
+                    {
+                        receiverExists = true;
+                        break;
+                    }
+                }
+
+
+                if (!receiverExists)
+                {
+                    Console.WriteLine("Geçersiz alıcı hesap numarası.");
+                    return;
+                }
 
                 Console.Write("Transfer etmek istediğiniz miktarı girin: ");
                 if (decimal.TryParse(Console.ReadLine(), out decimal amount) && amount > 0)
